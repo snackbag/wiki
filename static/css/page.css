@@ -3,6 +3,9 @@
     --sidebar-width: 240px;
     --sidebar-item-background: rgb(241 241 242);
     --sidebar-text-color: #2a2a2a;
+    
+    --note-background: rgba(255, 224, 150, 0.65);
+    --note-side: rgba(255, 213, 106, 0.65);
 }
 
 .page-content {
@@ -84,6 +87,14 @@
     margin-top: 8px;
     color: var(--sidebar-text-color);
     font-weight: 500;
+}
+
+.page-content .note {
+    background-color: var(--note-background);
+    padding: 7px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--note-background);
+    border-left: 5px solid var(--note-side);
 }
 
 @media screen and (max-width: 900px) {
