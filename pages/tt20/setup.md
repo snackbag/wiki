@@ -27,6 +27,8 @@ END NOTE
    ⚠️ Don’t forget the comma at the end of the line!
 5. Either restart your game or run the `/tt20 reload` command in-game 
 
+[Need some extra help?](https://discord.gg/7uYhxN7cFj)
+
 ## Modpacks
 
 In a modpack, it's usually best to avoid maintaining separate versions for the server and the client. That's why,
