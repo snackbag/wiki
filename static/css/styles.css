@@ -1,9 +1,19 @@
+:root {
+    --text-color: rgb(61 59 66);
+    --a-color: #6b460d;
+    --hr-background-color: #e2e2e3;
+    
+    --card-background-begin: rgba(0, 0, 0, 0.03);
+    --card-background-end: rgba(0, 0, 0, 0.07);
+    --card-border: rgb(0, 0, 0, 0.03);
+}
+
 html, body {
     padding: 0;
     margin: 0;
     
     font-family: Inter, sans-serif;
-    color: rgb(61 59 66);
+    color: var(--text-color);
 }
 
 .index-content {
@@ -23,37 +33,26 @@ p {
     margin: 0;
 }
 
-a {
-    color: #6b460d;
-}
-
-a:visited {
-    color: #6b460d;
+a, a:visited {
+    color: var(--a-color);
 }
 
 a:active {
     filter: brightness(1.8);
 }
 
-a.silent {
-    color: inherit;
-    text-decoration: inherit;
-}
-
-a:visited.silent {
+a.silent, a:visited.silent, a:active.silent {
     color: inherit;
     text-decoration: inherit;
 }
 
 a:active.silent {
-    color: inherit;
-    text-decoration: inherit;
     filter: inherit;
 }
 
 hr {
     width: 100%;
-    background-color: #e2e2e3;
+    background-color: var(--hr-background-color);
     height: 1px;
     border: 0;
 }
@@ -74,12 +73,12 @@ hr {
     display: flex;
     flex-direction: column;
     
-    background-image: linear-gradient(150deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.07));
+    background-image: linear-gradient(150deg, var(--card-background-begin), var(--card-background-end));
     padding: 15px;
     border-radius: 25px;
     max-width: calc(800px / 2 - 37px);
     
-    border: 1px solid rgb(0, 0, 0, 0.03);
+    border: 1px solid var(--card-border);
     cursor: pointer;
     user-select: none;
 }
