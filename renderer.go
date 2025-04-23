@@ -80,7 +80,7 @@ func GeneratePage(project ProjectData, page string) compass.Response {
 	ctx := compass.NewTemplateContext(Server)
 	ctx.SetVariable("content", string(html))
 	ctx.SetVariable("cp", project.Id)
-	ctx.SetVariable("pages", BeautifyPages(pages, project))
+	ctx.SetVariable("pages", BeautifyPages(pages, page, project))
 
 	return compass.Fill("page.html", ctx, Server)
 }
