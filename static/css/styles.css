@@ -35,6 +35,22 @@ a:active {
     filter: brightness(1.8);
 }
 
+a.silent {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+a:visited.silent {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+a:active.silent {
+    color: inherit;
+    text-decoration: inherit;
+    filter: inherit;
+}
+
 hr {
     width: 100%;
     background-color: #e2e2e3;
