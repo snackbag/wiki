@@ -13,6 +13,7 @@
 
 .page-content h1 {
     display: flex;
-    width: max-content;
-    border-bottom: 3px solid black;
+    
+    margin-bottom: 14px;
+    border-bottom: 2px solid var(--hr-background-color);
 }
