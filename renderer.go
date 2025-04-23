@@ -74,5 +74,9 @@ func GeneratePage(project ProjectData, page string) compass.Response {
 	}
 
 	html := markdown.ToHTML(md, nil, nil)
-	return compass.Text(string(html))
+
+	ctx := compass.NewTemplateContext(Server)
+	ctx.SetVariable("content", string(html))
+
+	return compass.Fill("page.html", ctx, Server)
 }
