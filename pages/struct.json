@@ -7,6 +7,8 @@
         "main": "home",
         
         "download_info": "via Modrinth",
-        "download_precompiled": "https://modrinth.com/mod/tt20"
+        "download_precompiled": "https://modrinth.com/mod/tt20",
+        
+        "page_structure": ["home.md", "setup.md", "configuration.md", "commands.md", "technical-details.md"]
     }
 }
