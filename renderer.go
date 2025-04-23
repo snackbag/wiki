@@ -78,7 +78,7 @@ func GeneratePage(project ProjectData, page string) compass.Response {
 	pages := GetPages(project)
 
 	ctx := compass.NewTemplateContext(Server)
-	ctx.SetVariable("content", string(html))
+	ctx.SetVariable("content", ApplyStylingToContent(string(html)))
 	ctx.SetVariable("cp", project.Id)
 	ctx.SetVariable("pages", BeautifyPages(pages, page, project))
 
@@ -120,4 +120,11 @@ func BeautifyPages(pages []string, currentPage string, project ProjectData) stri
 	}
 
 	return builder.String()
+}
+
+func ApplyStylingToContent(content string) string {
+	content = strings.ReplaceAll(content, "BEGIN NOTE", "<div class=\"note\">")
+	content = strings.ReplaceAll(content, "END NOTE", "</div>")
+
+	return content
 }
