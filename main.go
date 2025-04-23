@@ -8,6 +8,7 @@ import (
 
 var Server *compass.Server
 var Projects map[string]ProjectData
+var PagesDir string
 
 func main() {
 	server := compass.NewServer()
@@ -24,6 +25,7 @@ func main() {
 	server.StaticDirectory = config.StaticDir
 	server.TemplatesDirectory = config.TemplatesDir
 	server.ComponentsDirectory = config.ComponentsDir
+	PagesDir = config.PagesDir
 
 	global.SetHandlerServerResponse(handler, &server)
 	LoadPages(config.PagesDir, handler)
