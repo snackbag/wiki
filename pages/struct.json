@@ -1,0 +1,11 @@
+{
+    "tt20": {
+        "display": "TT20 mod (Forge & Fabric)",
+        "source": "https://github.com/snackbag/TT20",
+        "issues": "https://github.com/snackbag/TT20/issues",
+        "main": "home.md",
+        
+        "download_info": "via Modrinth",
+        "download_precompiled": "https://modrinth.com/mod/tt20"
+    }
+}
