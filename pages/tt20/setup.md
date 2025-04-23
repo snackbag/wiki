@@ -4,15 +4,31 @@ This part of the wiki will guide you through the simple process of installing TT
 
 ## Basics
 
-First, go to the [Modrinth page](https://modrinth.com/mod/tt20) and download the version of the mod that suits your
-server's version and software. Simply drag the downloaded jar file into your `mods` folder, and you're ready to go. Your
-players do not need to install TT20, in fact, they shouldn't. Even a vanilla client can join your server and enjoy the
-benefits of the mod.
+**Server Installation**
 
-In singleplayer, TT20 may be a little harder to install. The first step, of course, is to install TT20 by putting it
-into your `mods` folder. After you've started your game at least once with the mod enabled, check your config folder for
-a separate folder inside named `tt20`. Inside you will likely see multiple files. You want to open the `config.json` and
-change the `singleplayer-warning` value to `false`. Don't forget the comma at the end! Now either restart your game or
-run the `/tt20 reload` command.
+1. Head over to the [Modrinth page](https://modrinth.com/mod/tt20)
+2. Download the version that matches your server's Minecraft version and mod loader
+3. Drop the `.jar` file into your server's `mods` folder
+
+That's it! You've got TT20 running on your server.
+
+BEGIN NOTE
+**Note:** Players do **do not** need to install TT20 on their clients. In fact, **they shouldn't**. Even vanilla clients can connect and benefit from TT20's optimizations.
+END NOTE
+
+---
+
+**Singleplayer Installation**
+
+1. Drop TT20 into your client's `mods` folder like any other mod
+2. Start the game at least once to let TT20 generate its config files
+3. Navigate to your game's config folder and select the `tt20` folder within
+4. Open `config.json` and set `"singleplayer-warning": false,`\
+   ⚠️ Don’t forget the comma at the end of the line!
+5. Either restart your game or run the `/tt20 reload` command in-game 
 
 ## Modpacks
+
+In a modpack, it's usually best to avoid maintaining separate versions for the server and the client. That's why,
+starting with version 0.8, TT20 gained the ability to automatically disable itself in singleplayer. To enable this
+behavior, set `singleplayer-enabled` to `false` in the `config.json` file. 
