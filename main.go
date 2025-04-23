@@ -29,6 +29,7 @@ func main() {
 
 	global.SetHandlerServerResponse(handler, &server)
 	LoadPages(config.PagesDir, handler)
+
 	AddHomePages()
 
 	server.Start()
