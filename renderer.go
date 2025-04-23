@@ -96,7 +96,7 @@ func GetPages(project ProjectData) []string {
 	pages := make([]string, 0)
 	for _, entry := range entries {
 		if !entry.IsDir() && strings.HasSuffix(entry.Name(), ".md") {
-			pages = append(pages, entry.Name())
+			pages = append(pages, strings.TrimSuffix(entry.Name(), ".md"))
 		}
 	}
 
