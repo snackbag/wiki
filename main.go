@@ -1,7 +1,8 @@
 package main
 
-import "fmt"
+import "github.com/snackbag/compass/compass"
 
 func main() {
-	fmt.Println("bober")
+	server := compass.NewServer()
+	server.Start()
 }
