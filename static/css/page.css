@@ -11,7 +11,7 @@
 
     max-width: 700px;
     min-width: 600px;
-    margin: 40px auto 0;
+    margin: 20px auto 0;
     padding: 10px;
 }
 
@@ -19,11 +19,15 @@
     margin-top: 12px;
 }
 
-.page-content h1 {
+.page-content h1, h2 {
     display: flex;
     
     margin-bottom: 14px;
     border-bottom: 2px solid var(--hr-background-color);
+}
+
+.page-content h1, h2, h3, h4, h5, h6 {
+    margin-top: 20px;
 }
 
 .sidebar {
