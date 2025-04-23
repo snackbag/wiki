@@ -55,6 +55,14 @@
     transition: 0.1s;
 }
 
+.sidebar > a.active > div {
+    filter: brightness(0.975);
+}
+
+.sidebar > a.active > div:hover {
+    filter: brightness(0.95);
+}
+
 .sidebar div:hover {
     filter: brightness(0.975);
 }
