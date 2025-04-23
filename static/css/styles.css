@@ -37,4 +37,7 @@ a:active {
 
 hr {
     width: 100%;
+    background-color: #e2e2e3;
+    height: 1px;
+    border: 0;
 }
