@@ -25,6 +25,7 @@ func main() {
 	server.ComponentsDirectory = config.ComponentsDir
 
 	global.SetHandlerServerResponse(handler, &server)
+	AddHomePages()
 
 	server.Start()
 }
