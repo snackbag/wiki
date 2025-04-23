@@ -9,11 +9,13 @@ import (
 var Server *compass.Server
 var Projects map[string]ProjectData
 var PagesDir string
+var Handler *global.Handler
 
 func main() {
 	server := compass.NewServer()
 	handler := global.NewHandler()
 	Server = &server
+	Handler = handler
 
 	config := AssembleConfiguration(handler)
 	if config == nil {
