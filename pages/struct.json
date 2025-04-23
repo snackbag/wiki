@@ -1,7 +1,7 @@
 {
     "tt20": {
         "id": "tt20",
-        "display": "TT20 mod (Forge & Fabric)",
+        "display": "TT20 mod",
         "source": "https://github.com/snackbag/TT20",
         "issues": "https://github.com/snackbag/TT20/issues",
         "main": "home",
