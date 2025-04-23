@@ -103,14 +103,18 @@ func GetPages(project ProjectData) []string {
 	return pages
 }
 
-func BeautifyPages(pages []string, project ProjectData) string {
+func BeautifyPages(pages []string, currentPage string, project ProjectData) string {
 	builder := strings.Builder{}
 	for _, page := range pages {
 		builder.WriteString(`<a href="/w/`)
 		builder.WriteString(project.Id)
 		builder.WriteString("/")
 		builder.WriteString(page)
-		builder.WriteString(`" class="silent"><div><p>`)
+		builder.WriteString(`" class="silent`)
+		if currentPage == page {
+			builder.WriteString(" active")
+		}
+		builder.WriteString(`"><div><p>`)
 		builder.WriteString(strings.Title(strings.ReplaceAll(strings.ToLower(page), "-", " ")))
 		builder.WriteString(`</p></div></a>`)
 	}
