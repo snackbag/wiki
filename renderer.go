@@ -80,7 +80,7 @@ func GeneratePage(project ProjectData, page string) compass.Response {
 	ctx := compass.NewTemplateContext(Server)
 	ctx.SetVariable("content", string(html))
 	ctx.SetVariable("cp", project.Id)
-	ctx.SetVariable("pages", BeautifyPages(pages))
+	ctx.SetVariable("pages", BeautifyPages(pages, project))
 
 	return compass.Fill("page.html", ctx, Server)
 }
@@ -101,4 +101,19 @@ func GetPages(project ProjectData) []string {
 	}
 
 	return pages
+}
+
+func BeautifyPages(pages []string, project ProjectData) string {
+	builder := strings.Builder{}
+	for _, page := range pages {
+		builder.WriteString(`<a href="/w/`)
+		builder.WriteString(project.Id)
+		builder.WriteString("/")
+		builder.WriteString(page)
+		builder.WriteString(`" class="silent"><div><p>`)
+		builder.WriteString(strings.Title(strings.ReplaceAll(strings.ToLower(page), "-", " ")))
+		builder.WriteString(`</p></div></a>`)
+	}
+
+	return builder.String()
 }
