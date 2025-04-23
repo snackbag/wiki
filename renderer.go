@@ -2,12 +2,14 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"github.com/gomarkdown/markdown"
 	"github.com/snackbag/compass/compass"
 	"io"
 	"os"
 	"path"
 	"regexp"
+	"strings"
 )
 
 func AddWikiPages() {
@@ -74,10 +76,31 @@ func GeneratePage(project ProjectData, page string) compass.Response {
 	}
 
 	html := markdown.ToHTML(md, nil, nil)
+	pages := GetPages(project)
 
 	ctx := compass.NewTemplateContext(Server)
 	ctx.SetVariable("content", string(html))
 	ctx.SetVariable("cp", project.Id)
+	ctx.SetVariable("pages", BeautifyPages(pages))
 
 	return compass.Fill("page.html", ctx, Server)
+}
+
+func GetPages(project ProjectData) []string {
+	p := path.Join(PagesDir, project.Id)
+	entries, err := os.ReadDir(p)
+	if err != nil {
+		Handler.DoFatalError("[Renderer/GetPages] Failed to ReadDir of '" + p + "'")
+		return make([]string, 0)
+	}
+
+	pages := make([]string, 0)
+	for _, entry := range entries {
+		if !entry.IsDir() && strings.HasSuffix(entry.Name(), ".md") {
+			pages = append(pages, entry.Name())
+		}
+	}
+
+	fmt.Println(pages)
+	return pages
 }
