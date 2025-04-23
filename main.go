@@ -7,6 +7,7 @@ import (
 )
 
 var Server *compass.Server
+var Projects map[string]ProjectData
 
 func main() {
 	server := compass.NewServer()
@@ -25,6 +26,7 @@ func main() {
 	server.ComponentsDirectory = config.ComponentsDir
 
 	global.SetHandlerServerResponse(handler, &server)
+	LoadPages(config.PagesDir, handler)
 	AddHomePages()
 
 	server.Start()
