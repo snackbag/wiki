@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"github.com/gomarkdown/markdown"
 	"github.com/snackbag/compass/compass"
 	"io"
@@ -101,6 +100,5 @@ func GetPages(project ProjectData) []string {
 		}
 	}
 
-	fmt.Println(pages)
 	return pages
 }
