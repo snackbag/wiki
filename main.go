@@ -6,9 +6,12 @@ import (
 	"github.com/snackbag/wiki/global"
 )
 
+var Server *compass.Server
+
 func main() {
 	server := compass.NewServer()
 	handler := global.NewHandler()
+	Server = &server
 
 	config := AssembleConfiguration(handler)
 	if config == nil {
