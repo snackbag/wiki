@@ -38,9 +38,8 @@ func AssembleConfiguration(handler *global.Handler) *Configuration {
 		return nil
 	}
 
-	if fileInfo.Size() == 0 {
-		config = defaultConfig
-	} else {
+	config = defaultConfig
+	if fileInfo.Size() > 0 {
 		decoder := json.NewDecoder(f)
 		if err = decoder.Decode(&config); err != nil {
 			handler.DoFatalError("[AssembleConfiguration] Failed to parse JSON on config 'config.json'. " + err.Error())
