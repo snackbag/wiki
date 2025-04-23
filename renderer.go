@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown/html"
 	"github.com/snackbag/compass/compass"
 	"io"
 	"os"
@@ -74,11 +75,14 @@ func GeneratePage(project ProjectData, page string) compass.Response {
 		return compass.Text("you're not supposed to see this, reload the page")
 	}
 
-	html := markdown.ToHTML(md, nil, nil)
+	htmlFlags := html.CommonFlags | html.HrefTargetBlank
+	opts := html.RendererOptions{Flags: htmlFlags}
+	renderer := html.NewRenderer(opts)
+	generated := markdown.ToHTML(md, nil, renderer)
 	pages := GetPages(project)
 
 	ctx := compass.NewTemplateContext(Server)
-	ctx.SetVariable("content", ApplyStylingToContent(string(html)))
+	ctx.SetVariable("content", ApplyStylingToContent(string(generated)))
 	ctx.SetVariable("cp", project.Id)
 	ctx.SetVariable("pages", BeautifyPages(pages, page, project))
 
