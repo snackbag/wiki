@@ -33,6 +33,7 @@ func main() {
 	LoadPages(config.PagesDir, handler)
 
 	AddHomePages()
+	AddWikiPages()
 
 	server.Start()
 }
