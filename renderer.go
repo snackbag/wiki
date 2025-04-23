@@ -1,8 +1,12 @@
 package main
 
 import (
+	"errors"
 	"github.com/gomarkdown/markdown"
 	"github.com/snackbag/compass/compass"
+	"io"
+	"os"
+	"path"
 	"regexp"
 )
 
@@ -48,4 +52,27 @@ func GeneratePage(project ProjectData, page string) compass.Response {
 		return compass.FillWithCode("404.html", ctx, Server, 404)
 	}
 
+	p := path.Join(PagesDir, project.Id, page+".md")
+	if _, err := os.Stat(p); errors.Is(err, os.ErrNotExist) {
+		ctx := compass.NewTemplateContext(Server)
+		ctx.SetVariable("message", "The "+project.Display+" wiki does not have a page named '"+page+"'")
+		return compass.FillWithCode("404.html", ctx, Server, 404)
+	}
+
+	file, err := os.Open(p)
+	if err != nil {
+		Handler.DoFatalError("[Renderer/GeneratePage] Failed to open file at '" + p + "'. " + err.Error())
+		return compass.Text("you're not supposed to see this, reload the page")
+	}
+
+	defer file.Close()
+
+	md, err := io.ReadAll(file)
+	if err != nil {
+		Handler.DoFatalError("[Renderer/GeneratePage] Failed to read file at '" + p + "'. " + err.Error())
+		return compass.Text("you're not supposed to see this, reload the page")
+	}
+
+	html := markdown.ToHTML(md, nil, nil)
+	return compass.Text(string(html))
 }
