@@ -77,6 +77,7 @@ func GeneratePage(project ProjectData, page string) compass.Response {
 
 	ctx := compass.NewTemplateContext(Server)
 	ctx.SetVariable("content", string(html))
+	ctx.SetVariable("cp", project.Id)
 
 	return compass.Fill("page.html", ctx, Server)
 }
