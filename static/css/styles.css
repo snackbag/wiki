@@ -94,6 +94,15 @@ code {
     border-radius: 8px;
 }
 
+blockquote {
+    border-left: 3px solid var(--card-background-end);
+    background-color: var(--card-background-begin);
+
+    padding: 0 40px;
+    margin: 1em 0;
+    width: max-content;
+}
+
 @media screen and (max-width: 820px) {
     .card {
         width: 100%;
