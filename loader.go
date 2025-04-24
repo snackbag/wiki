@@ -19,6 +19,7 @@ type ProjectData struct {
 	PageStructure       []string `json:"page_structure"`
 
 	CachedPageStructure []string
+	CachedPageContents  map[string][]byte
 }
 
 func LoadProjects(pagesDir string, handler *global.Handler) {
@@ -35,5 +36,9 @@ func LoadProjects(pagesDir string, handler *global.Handler) {
 	if err != nil {
 		handler.DoFatalError("[LoadProjects] Failed to unmarshal 'struct.json'. " + err.Error())
 		return
+	}
+
+	for _, proj := range Projects {
+		proj.CachedPageContents = make(map[string][]byte)
 	}
 }

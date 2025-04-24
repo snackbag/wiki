@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"github.com/gomarkdown/markdown"
 	"github.com/gomarkdown/markdown/html"
 	"github.com/snackbag/compass/compass"
@@ -55,32 +56,38 @@ func GeneratePage(project *ProjectData, page string) compass.Response {
 		return compass.FillWithCode("404.html", ctx, Server, 404)
 	}
 
-	p := path.Join(PagesDir, project.Id, page+".md")
-	if _, err := os.Stat(p); errors.Is(err, os.ErrNotExist) {
-		ctx := compass.NewTemplateContext(Server)
-		ctx.SetVariable("message", "The "+project.Display+" wiki does not have a page named '"+page+"'")
-		return compass.FillWithCode("404.html", ctx, Server, 404)
-	}
-
-	file, err := os.Open(p)
-	if err != nil {
-		Handler.DoFatalError("[Renderer/GeneratePage] Failed to open file at '" + p + "'. " + err.Error())
-		return compass.Text("you're not supposed to see this, reload the page")
-	}
-
-	defer file.Close()
-
-	md, err := io.ReadAll(file)
-	if err != nil {
-		Handler.DoFatalError("[Renderer/GeneratePage] Failed to read file at '" + p + "'. " + err.Error())
-		return compass.Text("you're not supposed to see this, reload the page")
-	}
-
-	htmlFlags := html.CommonFlags | html.HrefTargetBlank
-	opts := html.RendererOptions{Flags: htmlFlags}
-	renderer := html.NewRenderer(opts)
-	generated := markdown.ToHTML(md, nil, renderer)
+	var generated []byte
 	pages := GetPages(project)
+
+	if !IsDevMode {
+		if !slices.Contains(pages, page) {
+			ctx := compass.NewTemplateContext(Server)
+			ctx.SetVariable("message", "The "+project.Display+" wiki does not have a page named '"+page+"'")
+			return compass.FillWithCode("404.html", ctx, Server, 404)
+		}
+
+		val, ok := project.CachedPageContents[page]
+		if !ok {
+			generatedBase, err := GeneratePageFromScratch(project, page)
+			if err != nil {
+				return *err
+			}
+
+			project.CachedPageContents[page] = *generatedBase
+			generated = *generatedBase
+		} else {
+			generated = val
+
+			fmt.Println("FROM CACHE")
+		}
+	} else {
+		generatedBase, err := GeneratePageFromScratch(project, page)
+		if err != nil {
+			return *err
+		}
+
+		generated = *generatedBase
+	}
 
 	ctx := compass.NewTemplateContext(Server)
 	ctx.SetVariable("content", ApplyStylingToContent(string(generated)))
@@ -96,6 +103,39 @@ func GeneratePage(project *ProjectData, page string) compass.Response {
 	}
 
 	return compass.Fill("page.html", ctx, Server)
+}
+
+func GeneratePageFromScratch(project *ProjectData, page string) (*[]byte, *compass.Response) {
+	p := path.Join(PagesDir, project.Id, page+".md")
+	if _, err := os.Stat(p); errors.Is(err, os.ErrNotExist) {
+		ctx := compass.NewTemplateContext(Server)
+		ctx.SetVariable("message", "The "+project.Display+" wiki does not have a page named '"+page+"'")
+		resp := compass.FillWithCode("404.html", ctx, Server, 404)
+		return nil, &resp
+	}
+
+	file, err := os.Open(p)
+	if err != nil {
+		Handler.DoFatalError("[Renderer/GeneratePage] Failed to open file at '" + p + "'. " + err.Error())
+		resp := compass.Text("you're not supposed to see this, reload the page")
+		return nil, &resp
+	}
+
+	defer file.Close()
+
+	md, err := io.ReadAll(file)
+	if err != nil {
+		Handler.DoFatalError("[Renderer/GeneratePage] Failed to read file at '" + p + "'. " + err.Error())
+		resp := compass.Text("you're not supposed to see this, reload the page")
+		return nil, &resp
+	}
+
+	htmlFlags := html.CommonFlags | html.HrefTargetBlank
+	opts := html.RendererOptions{Flags: htmlFlags}
+	renderer := html.NewRenderer(opts)
+	generated := markdown.ToHTML(md, nil, renderer)
+
+	return &generated, nil
 }
 
 func GetPages(project *ProjectData) []string {
