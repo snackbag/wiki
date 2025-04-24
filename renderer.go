@@ -120,7 +120,7 @@ func BeautifyPages(pages []string, currentPage string, project ProjectData) stri
 		}
 		builder.WriteString(`"><div><p>`)
 		builder.WriteString(strings.Title(strings.ReplaceAll(strings.ToLower(page), "-", " ")))
-		builder.WriteString(`</p></div></a>`)
+		builder.WriteString("</p></div></a>\n")
 	}
 
 	return builder.String()
