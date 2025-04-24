@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"github.com/gomarkdown/markdown"
 	"github.com/gomarkdown/markdown/html"
 	"github.com/snackbag/compass/compass"
@@ -77,8 +76,6 @@ func GeneratePage(project *ProjectData, page string) compass.Response {
 			generated = *generatedBase
 		} else {
 			generated = val
-
-			fmt.Println("FROM CACHE")
 		}
 	} else {
 		generatedBase, err := GeneratePageFromScratch(project, page)
