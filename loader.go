@@ -17,6 +17,8 @@ type ProjectData struct {
 	DownloadInfo        string   `json:"download_info"`
 	DownloadPrecompiled string   `json:"download_precompiled"`
 	PageStructure       []string `json:"page_structure"`
+
+	CachedPageStructure []string
 }
 
 func LoadProjects(pagesDir string, handler *global.Handler) {

@@ -7,7 +7,7 @@ import (
 )
 
 var Server *compass.Server
-var Projects map[string]ProjectData
+var Projects map[string]*ProjectData
 var PagesDir string
 var Handler *global.Handler
 var IsDevMode bool

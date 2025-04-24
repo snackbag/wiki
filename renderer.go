@@ -9,6 +9,7 @@ import (
 	"os"
 	"path"
 	"regexp"
+	"slices"
 	"strings"
 )
 
@@ -41,7 +42,7 @@ func AddWikiPages() {
 	})
 }
 
-func GeneratePage(project ProjectData, page string) compass.Response {
+func GeneratePage(project *ProjectData, page string) compass.Response {
 	matches, err := regexp.MatchString("^[a-zA-Z0-9-_]*$", page)
 	if err != nil {
 		Handler.DoFatalError("[Renderer/GeneratePage] Failed to match page with regex pattern. " + err.Error())
@@ -97,7 +98,11 @@ func GeneratePage(project ProjectData, page string) compass.Response {
 	return compass.Fill("page.html", ctx, Server)
 }
 
-func GetPages(project ProjectData) []string {
+func GetPages(project *ProjectData) []string {
+	if !IsDevMode && len(project.CachedPageStructure) > 0 {
+		return project.CachedPageStructure
+	}
+
 	p := path.Join(PagesDir, project.Id)
 	entries, err := os.ReadDir(p)
 	if err != nil {
@@ -108,14 +113,25 @@ func GetPages(project ProjectData) []string {
 	pages := make([]string, 0)
 	for _, entry := range entries {
 		if !entry.IsDir() && strings.HasSuffix(entry.Name(), ".md") {
-			pages = append(pages, strings.TrimSuffix(entry.Name(), ".md"))
+			pages = append(pages, entry.Name())
 		}
 	}
 
-	return pages
+	orderedPages := make([]string, 0)
+	for _, page := range project.PageStructure {
+		if slices.Contains(pages, page) {
+			orderedPages = append(orderedPages, strings.TrimSuffix(page, ".md"))
+		}
+	}
+
+	if !IsDevMode {
+		project.CachedPageStructure = orderedPages
+	}
+
+	return orderedPages
 }
 
-func BeautifyPages(pages []string, currentPage string, project ProjectData) string {
+func BeautifyPages(pages []string, currentPage string, project *ProjectData) string {
 	builder := strings.Builder{}
 	for _, page := range pages {
 		builder.WriteString(`<a href="/w/`)
