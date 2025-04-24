@@ -10,5 +10,15 @@
         "download_precompiled": "https://modrinth.com/mod/tt20",
         
         "page_structure": ["home.md", "setup.md", "configuration.md", "commands.md", "technical-details.md"]
+    },
+    
+    "compass": {
+        "id": "compass",
+        "display": "Compass Web Server",
+        "source": "https://github.com/snackbag/compass",
+        "issues": "https://github.com/snackbag/compass/issues",
+        "main": "home",
+        
+        "page_structure": ["home.md"]
     }
 }
