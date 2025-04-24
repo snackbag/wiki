@@ -10,6 +10,7 @@ var Server *compass.Server
 var Projects map[string]ProjectData
 var PagesDir string
 var Handler *global.Handler
+var IsDevMode bool
 
 func main() {
 	server := compass.NewServer()
@@ -28,6 +29,7 @@ func main() {
 	server.TemplatesDirectory = config.TemplatesDir
 	server.ComponentsDirectory = config.ComponentsDir
 	PagesDir = config.PagesDir
+	IsDevMode = config.DeveloperMode
 
 	global.SetHandlerServerResponse(handler, &server)
 	LoadProjects(config.PagesDir, handler)

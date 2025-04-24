@@ -12,6 +12,7 @@ type Configuration struct {
 	TemplatesDir  string `json:"templates_dir"`
 	ComponentsDir string `json:"components_dir"`
 	PagesDir      string `json:"pages_dir"`
+	DeveloperMode bool   `json:"dev_mode"`
 }
 
 func AssembleConfiguration(handler *global.Handler) *Configuration {
@@ -29,6 +30,7 @@ func AssembleConfiguration(handler *global.Handler) *Configuration {
 		TemplatesDir:  "templates",
 		ComponentsDir: "components",
 		PagesDir:      "pages",
+		DeveloperMode: true,
 	}
 
 	var config Configuration
