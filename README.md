@@ -5,7 +5,7 @@ https://wiki.snackbag.net/
 
 ## Building
 
-Build like any other GoLang program
+Build like any other GoLang program. Don't forget to `go mod tidy` first!
 
 ## Specifications
 
