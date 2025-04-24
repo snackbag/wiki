@@ -85,6 +85,14 @@ func GeneratePage(project ProjectData, page string) compass.Response {
 	ctx.SetVariable("content", ApplyStylingToContent(string(generated)))
 	ctx.SetVariable("cp", project.Id)
 	ctx.SetVariable("pages", BeautifyPages(pages, page, project))
+	if project.Source != "" {
+		ctx.SetVariable("link_sources", project.Source)
+	}
+
+	if project.DownloadPrecompiled != "" && project.DownloadInfo != "" {
+		ctx.SetVariable("link_download_precompiled", project.DownloadPrecompiled)
+		ctx.SetVariable("download_info", project.DownloadInfo)
+	}
 
 	return compass.Fill("page.html", ctx, Server)
 }
