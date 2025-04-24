@@ -23,6 +23,8 @@ type ProjectData struct {
 }
 
 func LoadProjects(pagesDir string, handler *global.Handler) {
+	Projects = make(map[string]*ProjectData)
+
 	file, err := os.Open(path.Join(pagesDir, "struct.json"))
 	if err != nil {
 		handler.DoFatalError("[LoadProjects] Failed to open 'struct.json'. " + err.Error())

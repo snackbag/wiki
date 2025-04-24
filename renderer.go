@@ -15,6 +15,10 @@ import (
 
 func AddWikiPages() {
 	Server.AddRoute("/w/<project>", func(request compass.Request) compass.Response {
+		if !IsDevMode {
+			LoadProjects(PagesDir, Handler)
+		}
+
 		project := request.GetParam("project")
 
 		p, ok := Projects[project]
@@ -28,6 +32,10 @@ func AddWikiPages() {
 	})
 
 	Server.AddRoute("/w/<project>/<page>", func(request compass.Request) compass.Response {
+		if IsDevMode {
+			LoadProjects(PagesDir, Handler)
+		}
+
 		project := request.GetParam("project")
 		page := request.GetParam("page")
 
