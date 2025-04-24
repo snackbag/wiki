@@ -6,9 +6,6 @@
     <!--- Page only styles --->
     <link rel="stylesheet" href="/static/css/page.css">
 </head>
-<div class="topbar">
-    <p>test</p>
-</div>
 <div style="display: flex">
     <div class="sidebar">
         <$pages/>
@@ -16,8 +13,18 @@
             <a href="/"><p>Back</p></a>
         </div>
     </div>
-    <div class="page-content">
-        <$content/>
+    <div style="width: 100%">
+        <div class="topbar">
+            <%if link_sources/>
+            <a href="<$link_sources/>" target="_blank">View Source Code</a>
+            <%end/>
+            <%if link_download_precompiled/>
+            <a href="<$link_download_precompiled/>" target="_blank">Download <$download_info/></a>
+            <%end/>
+        </div>
+        <div class="page-content">
+            <$content/>
+        </div>
     </div>
 </div>
 </html>
