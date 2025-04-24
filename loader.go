@@ -9,13 +9,14 @@ import (
 )
 
 type ProjectData struct {
-	Id                  string `json:"id"`
-	Display             string `json:"display"`
-	Source              string `json:"source"`
-	Issues              string `json:"issues"`
-	Main                string `json:"main"`
-	DownloadInfo        string `json:"download_info"`
-	DownloadPrecompiled string `json:"download_precompiled"`
+	Id                  string   `json:"id"`
+	Display             string   `json:"display"`
+	Source              string   `json:"source"`
+	Issues              string   `json:"issues"`
+	Main                string   `json:"main"`
+	DownloadInfo        string   `json:"download_info"`
+	DownloadPrecompiled string   `json:"download_precompiled"`
+	PageStructure       []string `json:"page_structure"`
 }
 
 func LoadProjects(pagesDir string, handler *global.Handler) {
