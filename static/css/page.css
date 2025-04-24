@@ -54,7 +54,7 @@
     transition: 0.2s;
 }
 
-.sidebar div {
+.sidebar > a > div {
     display: flex;
     align-items: center;
     color: #515158;
@@ -81,7 +81,7 @@
     filter: brightness(0.975);
 }
 
-.sidebar a {
+.sidebar > a {
     text-decoration: none;
 }
 
