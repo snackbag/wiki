@@ -18,10 +18,10 @@ type ProjectData struct {
 	DownloadPrecompiled string `json:"download_precompiled"`
 }
 
-func LoadPages(pagesDir string, handler *global.Handler) {
+func LoadProjects(pagesDir string, handler *global.Handler) {
 	file, err := os.Open(path.Join(pagesDir, "struct.json"))
 	if err != nil {
-		handler.DoFatalError("[LoadPages] Failed to open 'struct.json'. " + err.Error())
+		handler.DoFatalError("[LoadProjects] Failed to open 'struct.json'. " + err.Error())
 		return
 	}
 
@@ -30,7 +30,7 @@ func LoadPages(pagesDir string, handler *global.Handler) {
 
 	err = json.Unmarshal(byteVal, &Projects)
 	if err != nil {
-		handler.DoFatalError("[LoadPages] Failed to unmarshal 'struct.json'. " + err.Error())
+		handler.DoFatalError("[LoadProjects] Failed to unmarshal 'struct.json'. " + err.Error())
 		return
 	}
 }

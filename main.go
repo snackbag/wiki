@@ -30,7 +30,7 @@ func main() {
 	PagesDir = config.PagesDir
 
 	global.SetHandlerServerResponse(handler, &server)
-	LoadPages(config.PagesDir, handler)
+	LoadProjects(config.PagesDir, handler)
 
 	AddHomePages()
 	AddWikiPages()
