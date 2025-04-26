@@ -87,11 +87,26 @@ hr {
     filter: brightness(1.5);
 }
 
-code {
+code:not(pre code) {
     background-color: var(--card-background-begin);
     padding: 2px 6px;
     line-height: 22px;
     border-radius: 8px;
+}
+
+pre {
+    background-color: var(--card-background-begin) !important;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    
+    overflow-x: auto;
+}
+
+pre > code {
+    background-color: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 blockquote {
