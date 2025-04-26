@@ -20,5 +20,15 @@
         "main": "home",
         
         "page_structure": ["home.md"]
+    },
+    
+    "vex": {
+        "id": "vex",
+        "display": "Vex UI",
+        "source": "https://github.com/snackbag/vex",
+        "issues": "https://github.com/snackbag/vex/issues",
+        "main": "home",
+        
+        "page_structure": ["home.md"]
     }
 }
