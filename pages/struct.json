@@ -29,6 +29,6 @@
         "issues": "https://github.com/snackbag/vex/issues",
         "main": "home",
         
-        "page_structure": ["home.md", "*Basics", "styles.md", "scheduling.md", "*Widgets", "custom-widgets.md", "VRect.md", "VLabel.md"]
+        "page_structure": ["home.md"]
     }
 }
