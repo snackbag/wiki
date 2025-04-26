@@ -166,6 +166,8 @@ func GetPages(project *ProjectData) []string {
 	for _, page := range project.PageStructure {
 		if slices.Contains(pages, page) {
 			orderedPages = append(orderedPages, strings.TrimSuffix(page, ".md"))
+		} else if strings.HasPrefix(page, "*") {
+			orderedPages = append(orderedPages, page)
 		}
 	}
 
@@ -179,6 +181,13 @@ func GetPages(project *ProjectData) []string {
 func BeautifyPages(pages []string, currentPage string, project *ProjectData) string {
 	builder := strings.Builder{}
 	for _, page := range pages {
+		if strings.HasPrefix(page, "*") {
+			builder.WriteString("<p>")
+			builder.WriteString(strings.TrimPrefix(page, "*"))
+			builder.WriteString("</p>")
+			continue
+		}
+
 		builder.WriteString(`<a href="/w/`)
 		builder.WriteString(project.Id)
 		builder.WriteString("/")
