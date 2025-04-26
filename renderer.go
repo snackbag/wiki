@@ -197,7 +197,7 @@ func BeautifyPages(pages []string, currentPage string, project *ProjectData) str
 			builder.WriteString(" active")
 		}
 		builder.WriteString(`"><div><p>`)
-		builder.WriteString(strings.Title(strings.ReplaceAll(strings.ToLower(page), "-", " ")))
+		builder.WriteString(strings.Title(strings.ReplaceAll(page, "-", " ")))
 		builder.WriteString("</p></div></a>\n")
 	}
 
