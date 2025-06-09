@@ -7,7 +7,7 @@ https://wiki.snackbag.net/
 
 To build, run GNU make: "`make`". It will produce a binary `wiki`.
 
-You cam also build manually: `go mod tidy` and `go build`. 
+You can also build manually: `go mod tidy` and `go build`. 
 
 For deploying to the server, MAKE SURE THAT `dev_mode` IN THE config.json` IS SET TO FALSE! Otherwise, the program will not cache pages but reload them on each request.
 
