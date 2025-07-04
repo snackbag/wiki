@@ -24,7 +24,7 @@ You're good to go!
 
 ## Why is this necessary?
 
-When modding normally text is very abstract and convoluted, Neilon aims to make this easier. See this very basic
+When modding normally, text is very abstract and convoluted, Neilon aims to make this easier. See this very basic
 example:
 
 ```java
