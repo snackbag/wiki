@@ -110,6 +110,12 @@
     font-size: 12px;
 }
 
+@media screen and (max-width: 1000px) and (min-width: 901px) {
+    .page-content {
+        max-width: 600px;
+    }
+}
+
 @media screen and (max-width: 900px) {
     .page-content {
         min-width: 72%;
