@@ -17,3 +17,5 @@ func main() {
 	process.Run()
 }
 ```
+
+HINT: Once you initialized your program you can also use `vex.Process` to access the process globally
