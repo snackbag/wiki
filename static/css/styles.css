@@ -118,6 +118,11 @@ blockquote {
     width: max-content;
 }
 
+summary {
+    cursor: pointer;
+    width: max-content;
+}
+
 @media screen and (max-width: 820px) {
     .card {
         width: 100%;
