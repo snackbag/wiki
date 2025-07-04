@@ -78,7 +78,7 @@ NText.assemble()
 
 ## Click events
 
-You can click text. Now in simple.
+Setting up text-click events have been made simpler.
 
 **Run commands**\
 Since 1.19.1, Minecraft no longer allows click events make the player send chat messages, therefore putting a `/` in
