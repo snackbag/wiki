@@ -24,7 +24,7 @@ You're good to go!
 
 ## Why is this necessary?
 
-While when modding normally text is very abstract and convoluted, Neilon aims to make this easier. See this very basic
+When modding normally text is very abstract and convoluted, Neilon aims to make this easier. See this very basic
 example:
 
 ```java
@@ -32,8 +32,8 @@ Text.literal("Hello"); // vanilla
 NText.of("Hello"); // Neilon
 ```
 
-Not much has changed. But once you get into more complex stuff, Neilon will make your life tons and tons easier. Such as
-colors and hover events!
+Not much has changed. But once you get into more complex stuff, Neilon will make your life a lot easier. Such as colors
+and hover events!
 
 ```java
 // vanilla
