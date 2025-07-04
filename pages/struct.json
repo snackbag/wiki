@@ -22,6 +22,16 @@
         "page_structure": ["home.md"]
     },
     
+    "neilon": {
+        "id": "neilon",
+        "display": "Neilon Library",
+        "source": "https://github.com/snackbag/neilon",
+        "issues": "https://github.com/snackbag/neilon",
+        "main": "home",
+        
+        "page_structure": ["home.md"]
+    },
+    
     "vex": {
         "id": "vex",
         "display": "Vex UI",
