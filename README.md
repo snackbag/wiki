@@ -5,7 +5,11 @@ https://wiki.snackbag.net/
 
 ## Building
 
-Build like any other GoLang program. Don't forget to `go mod tidy` first! For deploying to the server, MAKE SURE THAT `dev_mode` IN THE `config.json` IS SET TO FALSE! Otherwise, the program will not cache pages but reload them on each request.
+To build, run GNU make: "`make`". It will produce a binary `wiki`.
+
+You can also build manually: `go mod tidy` and `go build`. 
+
+For deploying to the server, MAKE SURE THAT `dev_mode` IN THE config.json` IS SET TO FALSE! Otherwise, the program will not cache pages but reload them on each request.
 
 ## Specifications
 
