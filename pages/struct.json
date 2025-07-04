@@ -29,7 +29,7 @@
         "issues": "https://github.com/snackbag/neilon",
         "main": "home",
         
-        "page_structure": ["home.md"]
+        "page_structure": ["home.md", "basic-text.md", "the-assembler.md", "technical-details.md"]
     },
     
     "vex": {
