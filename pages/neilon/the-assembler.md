@@ -19,17 +19,17 @@ Let's apply a color operation to a translation key:
 ```java
 NText.assemble()
     .text("block.minecraft.diamond_block", TextType.TRANSLATION)
-    .color(VColor.MC_RED)
+    .color(Color.RED)
     .build();
 ```
 
 As you can see, the operation is applied to the last `.text` element. If none is defined, an error is thrown. This also
-allows you to stack multiple texts together. Look at this green text together with some blue text:
+allows you to stack multiple texts together. Look at this green text together with some red text:
 
 ```java
 NText.assemble()
-    .text("I'm green").color(VColor.MC_GREEN)
-    .text(" and I'm red").color(VColor.MC_RED)
+    .text("I'm green").color(Color.GREEN)
+    .text(" and I'm red").color(Color.RED)
     .build();
 ```
 
@@ -49,7 +49,7 @@ NText.assemble()
 // or even styled tooltips
 NText.assemble()
     .text("Hover me!")
-    .hover(NText.of("Beautiful tooltip", VColor.MC_RED)
+    .hover(NText.of("Beautiful tooltip", Color.RED)
     .build();
 ```
 
@@ -130,15 +130,15 @@ Don't forget that this is the assembler. It allows you to assemble things. Here'
 ```java
 NText.assemble()
     .text("[Epic Button]")
-    .color(VColor.MC_RED)
+    .color(Color.RED)
     .hover("What will this do?")
     .click(ClickType.RUN, "kill @s")
     
     .text(" ")
     
     .text("[Another Button]")
-    .color(VColor.MC_GREEN)
-    .hover(NText.of("I suspect this won't be any better.", VColor.MC_GREEN))
+    .color(Color.GREEN)
+    .hover(NText.of("I suspect this won't be any better.", Color.GREEN))
     .click(ClickType.COPY, "i like trains")
     
     .build();

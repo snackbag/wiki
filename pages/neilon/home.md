@@ -5,7 +5,8 @@ View the roadmap and a list of all features on GitHub.
 
 ## Setup
 
-Neilon requires any version of Vera over 1.0, as it uses `VColor` in the backend
+Any version of Neilon under 1.1 requires any version of Vera over 1.0, as it uses `VColor` in the backend. This has been
+changed.
 
 ```groovy
 repositories {
@@ -15,8 +16,7 @@ repositories {
 
 dependencies {
     // ...
-    modImplementation "net.snackbag.mcvera:mcvera:<YOUR_VERA_VERSION>"
-    modImplementation "net.snackbag.neilon-lib:neilon-lib:1.0.0" // latest version
+    modImplementation "net.snackbag.neilon-lib:neilon-lib:1.1.0" // latest version
 }
 ```
 
@@ -48,8 +48,8 @@ Text.literal("Your Text").styled(style -> style
 // Neilon
 NText.assemble()
     .text("Your Text")
-    .color(Formatting.RED)
-    .hover(NText.of("Hovered Text", Formatting.RED))
+    .color(Color.RED)
+    .hover(NText.of("Hovered Text", Color.RED))
     .build();
 ```
 

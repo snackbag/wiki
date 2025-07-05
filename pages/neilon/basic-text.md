@@ -9,7 +9,7 @@ return a normal Minecraft `Text` object, meaning you can use it anywhere without
 NText.of("literal text");
 
 // or with quick colors
-NText.of("literal text", VColor.MC_RED);
+NText.of("literal text", Color.RED);
 ```
 
 **Translations**
@@ -18,7 +18,7 @@ NText.of("literal text", VColor.MC_RED);
 NText.translation("block.minecraft.grass_block");
 
 // or with quick colors
-NText.translation("block.minecraft.grass_block", VColor.MC_RED);
+NText.translation("block.minecraft.grass_block", Color.RED);
 ```
 
 **Keybindings**
@@ -27,7 +27,7 @@ NText.translation("block.minecraft.grass_block", VColor.MC_RED);
 NText.keybinding("key.jump");
 
 // you guessed it, with quick colors
-NText.keybinding("key.jump", VColor.MC_RED);
+NText.keybinding("key.jump", Color.RED);
 ```
 
 This is fun, but you also want a little longer text. Maybe something like a message with a keybind within? Or different
