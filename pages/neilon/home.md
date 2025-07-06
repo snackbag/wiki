@@ -16,7 +16,10 @@ repositories {
 
 dependencies {
     // ...
-    modImplementation "net.snackbag.neilon-lib:neilon-lib:1.1.0" // latest version
+    modImplementation "net.snackbag.neilon:neilon-lib:1.1.1" // latest version
+    
+    // (for 1.1 or below)
+    modImplementation "neilon-lib:neilon-lib:1.1.1"
 }
 ```
 
