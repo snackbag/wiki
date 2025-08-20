@@ -62,3 +62,40 @@ public void update() {
     setHeight(Vera.provider.getScreenHeight());
 }
 ```
+
+## Full Example
+```java
+package com.example.demo;
+
+import net.snackbag.vera.Vera;
+import net.snackbag.vera.core.VColor;
+import net.snackbag.vera.core.VeraApp;
+import net.snackbag.vera.event.VShortcut;
+import net.snackbag.vera.widget.VLabel;
+
+public class DemoApplication extends VeraApp {
+    private int clicks = 0;
+
+    @Override
+    public void init() {
+        new VShortcut(this, "escape", this::hide).alsoAdd();
+        setBackgroundColor(VColor.black().withOpacity(0.2f));
+
+        VLabel label = new VLabel("hi there", this).alsoAdd();
+        label.move(10);
+        label.modifyFontColor().rgb(VColor.white());
+        label.onLeftClick(() -> {
+            clicks++;
+            label.setText("Clicks: " + clicks);
+        });
+    }
+
+    @Override
+    public void update() {
+        super.update();
+
+        setWidth(Vera.provider.getScreenWidth());
+        setHeight(Vera.provider.getScreenHeight());
+    }
+}
+```
