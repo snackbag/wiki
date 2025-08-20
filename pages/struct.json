@@ -12,16 +12,6 @@
         "page_structure": ["home.md", "setup.md", "configuration.md", "commands.md", "technical-details.md"]
     },
     
-    "compass": {
-        "id": "compass",
-        "display": "Compass Web Server",
-        "source": "https://github.com/snackbag/compass",
-        "issues": "https://github.com/snackbag/compass/issues",
-        "main": "home",
-        
-        "page_structure": ["home.md"]
-    },
-    
     "neilon": {
         "id": "neilon",
         "display": "Neilon Library",
@@ -30,15 +20,5 @@
         "main": "home",
         
         "page_structure": ["home.md", "basic-text.md", "the-assembler.md", "technical-details.md"]
-    },
-    
-    "vex": {
-        "id": "vex",
-        "display": "Vex UI",
-        "source": "https://github.com/snackbag/vex",
-        "issues": "https://github.com/snackbag/vex/issues",
-        "main": "home",
-        
-        "page_structure": ["home.md", "*Basics", "styling.md", "scheduling.md"]
     }
 }
