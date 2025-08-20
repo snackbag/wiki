@@ -57,6 +57,7 @@
             "app-hierarchy.md",
             "HUD-rendering.md",
             "custom-widgets.md",
+            "composite-pipeline.md",
             
             "*Internals"
         ]
