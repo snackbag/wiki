@@ -4,6 +4,18 @@ Vera is a lightweight yet powerful Fabric UI library. Unlike other popular libra
 customizable abstract UIs. It is **not** a wrapper over Minecraft's UI library. In turn, it does not inherently support
 traditional Minecraft-style UIs.
 
+If you don't need the vanilla look (or want to implement it yourself), these are the benefits:
+
+- It's fast
+- It's modular
+- As little boilerplate as possible
+- Simple layouts
+- Easy animations
+- Tons of UI rendering utilities outside normal UIs
+- Style composites 
+
+...and 2D shaders coming soon
+
 ## Showcase Examples
 
 BEGIN NOTE
