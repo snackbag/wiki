@@ -30,4 +30,32 @@ Render the UI on screen by simply initializing it and running the `.show()` meth
 `new DemoApplication().show()`
 ![Minecraft game with text overlaying in a black font, displaying "hi there"](/static/img/vera-hi-there.png)
 
-First step's done! But we can't exit.
+First step's done! But we can't exit. That's because we only defined the app but no exit logic. Let's add some keybinds,
+aka a `VShortcut`. A shortcut is what it implies, a keyboard shortcut. It consists of a key combination separated by the
+`+` character, which, when pressed, executes its assigned code. For us, that would be the `.hide()` method.
+
+```java
+// DemoApplication#init()
+new VShortcut(this, "escape", this::hide).alsoAdd();
+```
+
+Do not forget adding `.alsoAdd()`.
+
+## Full Example
+
+```java
+package com.example.demo;
+
+import net.snackbag.vera.core.VeraApp;
+import net.snackbag.vera.event.VShortcut;
+import net.snackbag.vera.widget.VLabel;
+
+public class DemoApplication extends VeraApp {
+    @Override
+    public void init() {
+        new VShortcut(this, "escape", this::hide).alsoAdd();
+
+        new VLabel("hi there", this).alsoAdd();
+    }
+}
+```
