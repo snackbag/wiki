@@ -43,3 +43,5 @@ public void update() {
 ```
 
 and instead of using `.alsoAdd()` for our label, we use `.alsoAddTo(centerLayout)` to add it to the center layout.
+
+![Darkened Minecraft world with centered white text displaying "hi there"](/static/img/vera-layout-centering-demo.png)
