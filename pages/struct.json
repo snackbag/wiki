@@ -49,6 +49,10 @@
             
             "*Widgets",
             
+            "*In-depth",
+            "elements-vs-widgets.md",
+            "keybinds.md",
+            
             "*Advanced",
             "app-hierarchy.md",
             "HUD-rendering.md",
