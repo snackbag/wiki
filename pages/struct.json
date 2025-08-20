@@ -5,20 +5,54 @@
         "source": "https://github.com/snackbag/TT20",
         "issues": "https://github.com/snackbag/TT20/issues",
         "main": "home",
-        
         "download_info": "via Modrinth",
         "download_precompiled": "https://modrinth.com/mod/tt20",
-        
-        "page_structure": ["home.md", "setup.md", "configuration.md", "commands.md", "technical-details.md"]
+        "page_structure": [
+            "home.md",
+            "setup.md",
+            "configuration.md",
+            "commands.md",
+            "technical-details.md"
+        ]
     },
-    
     "neilon": {
         "id": "neilon",
         "display": "Neilon Library",
         "source": "https://github.com/snackbag/neilon",
         "issues": "https://github.com/snackbag/neilon",
         "main": "home",
-        
-        "page_structure": ["home.md", "basic-text.md", "the-assembler.md", "technical-details.md"]
+        "page_structure": [
+            "home.md",
+            "basic-text.md",
+            "the-assembler.md",
+            "technical-details.md"
+        ]
+    },
+    "vera": {
+        "id": "vera",
+        "display": "Vera UI Library",
+        "source": "https://github.com/snackbag/vera",
+        "issues": "https://github.com/snackbag/vera/issues",
+        "main": "home",
+        "download_info": "via Modrinth",
+        "download_precompiled": "https://modrinth.com/mod/vera",
+        "page_structure": [
+            "home.md",
+            "setup.md",
+            
+            "*Tutorial",
+            "your-first-UI.md",
+            "adjusting-UIs.md",
+            "layouts.md",
+            "styles.md",
+            "animations.md",
+            
+            "*Widgets",
+            
+            "*Advanced",
+            "custom-widgets.md",
+            
+            "*Internals"
+        ]
     }
 }
