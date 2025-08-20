@@ -50,6 +50,8 @@
             "*Widgets",
             
             "*Advanced",
+            "app-hierarchy.md",
+            "HUD-rendering.md",
             "custom-widgets.md",
             
             "*Internals"
