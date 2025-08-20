@@ -22,8 +22,8 @@ BEGIN NOTE
 Add your own examples through [a pull request](https://github.com/snackbag/wiki)
 END NOTE
 
-Below, a few examples of Vera's abilities are shown. Under the image an attribution of the team's name is shown as well
-as the version of Vera the screenshot was taken in.
+Below, a few examples of Vera's abilities are shown. Under the image you can find attribution to the team name as well
+as the versions the screenshot was taken in.
 
 ![particle editor](/static/img/vera-particle-editor.png)
 Particle Editor by SnackBag Studios (1.20.1, Vera 1.9)
