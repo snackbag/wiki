@@ -20,6 +20,7 @@ Already looks magnitudes better. Since this is a clicking game, we should add th
 can simply listen to the click event.
 
 ```java
+// DemoApplication
 private int clicks = 0;
 
 @Override
@@ -34,3 +35,14 @@ public void init() {
 ```
 
 Try it! When you left-click the label, it increments the `clicks` variable and adjusts the label's text.
+
+Next task: darken the app's background, because the label is hard to see and set the label's color to white.
+```java
+// DemoApplication#init()
+
+setBackgroundColor(VColor.black().withOpacity(0.2f));
+// ...
+label.modifyFontColor().rgb(VColor.white());
+```
+
+![Darkened Minecraft world with a clickable overlay text saying "Clicks: 4" in a white font](/static/img/vera-clicker-demo.png)
