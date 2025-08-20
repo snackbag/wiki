@@ -37,6 +37,7 @@ public void init() {
 Try it! When you left-click the label, it increments the `clicks` variable and adjusts the label's text.
 
 Next task: darken the app's background, because the label is hard to see and set the label's color to white.
+
 ```java
 // DemoApplication#init()
 
@@ -46,3 +47,18 @@ label.modifyFontColor().rgb(VColor.white());
 ```
 
 ![Darkened Minecraft world with a clickable overlay text saying "Clicks: 4" in a white font](/static/img/vera-clicker-demo.png)
+
+But there's one glaring problem. Remember how I told you that you could resize apps and adjust their position? That also
+means they don't fully resize when you resize the game window. You have to update their size manually.
+
+```java
+// DemoApplication
+
+@Override
+public void update() {
+    super.update();
+    
+    setWidth(Vera.provider.getScreenWidth());
+    setHeight(Vera.provider.getScreenHeight());
+}
+```
