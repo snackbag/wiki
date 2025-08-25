@@ -3,7 +3,7 @@
 Let's center everything. That's where layouts come in. There are two kinds of layouts:
 
 1. `VVLayout` -> Aligns elements vertically
-2. `VHLayout` -> Align elements horizontally
+2. `VHLayout` -> Aligns elements horizontally
 
 We'll need them both. One time the horizontal layout to center it horizontally and inside the vertical one to vertically
 center it.
