@@ -98,6 +98,7 @@ func GeneratePage(project *ProjectData, page string) compass.Response {
 	ctx.SetVariable("content", ApplyStylingToContent(string(generated)))
 	ctx.SetVariable("cp", project.Id)
 	ctx.SetVariable("pages", BeautifyPages(pages, page, project))
+	ctx.SetVariable("name", BeautifyPageName(page))
 	if project.Source != "" {
 		ctx.SetVariable("link_sources", project.Source)
 	}
@@ -197,11 +198,15 @@ func BeautifyPages(pages []string, currentPage string, project *ProjectData) str
 			builder.WriteString(" active")
 		}
 		builder.WriteString(`"><div><p>`)
-		builder.WriteString(strings.Title(strings.ReplaceAll(page, "-", " ")))
+		builder.WriteString(BeautifyPageName(page))
 		builder.WriteString("</p></div></a>\n")
 	}
 
 	return builder.String()
+}
+
+func BeautifyPageName(page string) string {
+	return strings.Title(strings.ReplaceAll(page, "-", " "))
 }
 
 func ApplyStylingToContent(content string) string {

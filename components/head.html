@@ -1,7 +1,9 @@
-{"title": "Page Title"}
+{"title": "Page Title", "easy_title": true}
 // CONTENT //
     <meta charset="UTF-8">
+    <%if &easy_title/>
     <title><$&title/> | SnackBag</title>
+    <%end/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="/static/css/styles.css">
