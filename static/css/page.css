@@ -54,6 +54,7 @@
     position: fixed;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
     
     width: var(--sidebar-width);
     height: 100%;
@@ -120,6 +121,10 @@
     gap: 10px;
     
     font-size: 12px;
+}
+
+img {
+    max-width: 100%;
 }
 
 @media screen and (max-width: 1000px) and (min-width: 901px) {
