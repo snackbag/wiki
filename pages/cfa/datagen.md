@@ -10,7 +10,7 @@ You will run into an issue when you try to use Fabric Datagen. Something along t
 ```
 
 This is caused by you not specifying which mod the datagen is supposed to generate. In this case, it generates
-everything, which is not what you want. Simply add `-Dfabric-api.datagen.modid=<yourmodidhere>` to your Datagen VM
+everything, which you don't want. Simply add `-Dfabric-api.datagen.modid=<yourmodidhere>` to your Datagen VM
 options.
 
 ![datagen highlighted in IntelliJ VM options](/static/img/cfa/datagen-info.png)
