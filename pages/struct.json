@@ -28,6 +28,6 @@
         "source": "https://github.com/JXSnack/create-fabric-addon-wiki-demo",
         "main": "home",
         
-        "page_structure": ["home.md", "setup.md", "*Basics", "wrenchable-blocks.md", "goggle-info.md", "*Ponders", "*Rotational Blocks", "requiring-rotation.md", "creating-rotation.md", "*Contraptions", "lone-contraptions.md"]
+        "page_structure": ["home.md", "setup.md", "datagen.md", "*Basics", "wrenchable-blocks.md", "goggle-info.md", "*Ponders", "*Rotational Blocks", "requiring-rotation.md", "creating-rotation.md", "*Contraptions", "lone-contraptions.md"]
     }
 }
