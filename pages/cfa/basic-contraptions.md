@@ -1,4 +1,4 @@
-# Lone Contraptions
+# Basic Contraptions
 
 Let's make an airship. We first need to know what we want the airship to be. Of course! A contraption. Create
 contraptions are extremely customizable and easy to move around. Precisely what we want. The next step is to define what
