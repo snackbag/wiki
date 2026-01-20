@@ -20,5 +20,18 @@
         "main": "home",
         
         "page_structure": ["home.md", "basic-text.md", "the-assembler.md", "technical-details.md"]
+    },
+    
+    "tbm": {
+        "id": "tbm",
+        "display": "TabManager",
+        "source": "https://snackbag.net/snackbag/TabManager",
+        "issues": "https://snackbag.net/snackbag/TabManager/issues",
+        "main": "home",
+        
+        "download_info": "via Modrinth",
+        "download_precompiled": "https://modrinth.com/mod/tabmanager",
+        
+        "page_structure": ["home.md", "visual-adjustments.md", "item-filtering.md", "neat-things.md"]
     }
 }
