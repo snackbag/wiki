@@ -13,7 +13,8 @@ import (
 
 var server *compass.Server
 var Config struct {
-	Projects map[string]string `json:"projects"`
+	Projects       map[string]string `json:"projects"`
+	LoadedProjects map[string]projects.Project
 }
 
 func main() {
@@ -32,13 +33,17 @@ func main() {
 
 	// register projects
 	for id, def := range Config.Projects {
-		err = projects.Init(server, id, def)
+		loadedProject, err := projects.Init(server, id, def)
 		if err != nil {
 			server.Logger.Error(fmt.Sprintf("failed to set up project %s: %v", id, err))
 			server.AddRoute(fmt.Sprintf("/%s", id), func(request compass.Request) compass.Response {
 				return compass.TextWithCode("An error occurred while setting up this wiki page.", 500)
 			})
+		} else {
+			Config.LoadedProjects[id] = loadedProject
 		}
+
+		render.Init(server, id, loadedProject)
 	}
 
 	// legacy url fallback
