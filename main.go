@@ -1,41 +1,56 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"github.com/snackbag/compass/compass"
-	"github.com/snackbag/wiki/global"
+	"log"
+	"os"
+
+	"github.com/snackbag/compass/v2"
+	"github.com/snackbag/wiki/projects"
 )
 
-var Server *compass.Server
-var Projects map[string]*ProjectData
-var PagesDir string
-var Handler *global.Handler
-var IsDevMode bool
+var server *compass.Server
+var Config struct {
+	Projects map[string]string `json:"projects"`
+}
 
 func main() {
-	server := compass.NewServer()
-	handler := global.NewHandler()
-	Server = &server
-	Handler = handler
+	server = compass.NewServer(compass.NewStandardConfiguration())
 
-	config := AssembleConfiguration(handler)
-	if config == nil {
-		fmt.Println("Config is nil, aborting startup.")
-		return
+	// load config
+	data, err := os.ReadFile("config.json")
+	if err != nil {
+		log.Fatal(fmt.Errorf("reading config.json: %w", err))
 	}
 
-	server.Port = config.Port
-	server.StaticDirectory = config.StaticDir
-	server.TemplatesDirectory = config.TemplatesDir
-	server.ComponentsDirectory = config.ComponentsDir
-	PagesDir = config.PagesDir
-	IsDevMode = config.DeveloperMode
+	err = json.Unmarshal(data, &Config)
+	if err != nil {
+		log.Fatal(fmt.Errorf("parsing config.json: %w", err))
+	}
 
-	global.SetHandlerServerResponse(handler, &server)
-	LoadProjects(config.PagesDir, handler)
+	// register projects
+	for id, def := range Config.Projects {
+		err = projects.Init(server, id, def)
+		if err != nil {
+			server.Logger.Error(fmt.Sprintf("failed to set up project %s: %v", id, err))
+			server.AddRoute(fmt.Sprintf("/%s", id), func(request compass.Request) compass.Response {
+				return compass.Text("An error occurred while setting up this wiki page.")
+			})
+		}
+	}
 
-	AddHomePages()
-	AddWikiPages()
+	// legacy url fallback
+	server.AddRoute("/w/<project>", func(request compass.Request) compass.Response {
+		project, _ := request.GetRouteParam("project")
+		return compass.PermaRedirect(fmt.Sprintf("/%s", project))
+	})
 
-	server.Start()
+	server.AddRoute("/w/<project>/<page>", func(request compass.Request) compass.Response {
+		project, _ := request.GetRouteParam("project")
+		page, _ := request.GetRouteParam("page")
+		return compass.PermaRedirect(fmt.Sprintf("/%s/%s", project, page))
+	})
+
+	server.MustRun()
 }

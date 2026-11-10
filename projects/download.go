@@ -1,0 +1,35 @@
+package projects
+
+import (
+	"os"
+	"path/filepath"
+
+	"github.com/go-git/go-git/v5"
+	cp "github.com/otiai10/copy"
+)
+
+// Download clones a git repository at the given url into ./wikidl/<id>
+func Download(id string, url string) error {
+	path := filepath.Join("wikidl", id)
+	if err := os.MkdirAll(path, 0700); err != nil {
+		return err
+	}
+
+	_, err := git.PlainClone(path, false, &git.CloneOptions{
+		URL: url,
+	})
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func CopyLocal(id string, localPath string) error {
+	path := filepath.Join("wikidl", id)
+	if err := cp.Copy(localPath, path); err != nil {
+		return err
+	}
+
+	return nil
+}

@@ -1,8 +1,6 @@
 {
-    "port": 3001,
-    "static_dir": "static",
-    "templates_dir": "templates",
-    "components_dir": "components",
-    "pages_dir": "pages",
-    "dev_mode": false
+    "projects": {
+        "tt20": "git@github.com:snackbag/TT20.git",
+        "neilon": "git@github.com:snackbag/Neilon.git"
+    }
 }
