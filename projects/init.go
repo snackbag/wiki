@@ -17,9 +17,12 @@ func Init(server *compass.Server, id string, def string) error {
 		}
 	} else {
 		err := CopyLocal(id, def)
-		if err != nil {
-			return fmt.Errorf("copying %s: %w", id, err)
-		}
+		server.Logger.Warn(fmt.Sprintf("%s may be incomplete. copying %s: %v", id, id, err))
+	}
+
+	project, err := Read(id)
+	if err != nil {
+		return fmt.Errorf("reading wiki.json: %w", err)
 	}
 
 	server.AddRoute(fmt.Sprintf("/%s", id), func(request compass.Request) compass.Response {
@@ -29,7 +32,7 @@ func Init(server *compass.Server, id string, def string) error {
 	server.AddRoute(fmt.Sprintf("/%s/<page>", id), func(request compass.Request) compass.Response {
 		page, _ := request.GetRouteParam("page")
 
-		rendered, err := render.Render(id, page, []string{"hi.md", "*hiow", "woah_hI.md"})
+		rendered, err := render.Render(id, project.links[page], project.Pages)
 		if err != nil {
 			server.Logger.Error(fmt.Sprintf("failed to render %s/%s: %v", id, page, err))
 			return compass.TextWithCode("Failed to render page", 500)
