@@ -3,7 +3,7 @@ package render
 import "strings"
 
 // Sidebar updates <@Sidebar/> in the buffer HTML file, and returns an updated buffer
-func Sidebar(allPages []string, buf string) string {
+func Sidebar(allPages []string, active string, buf string) string {
 	var sidebar strings.Builder
 
 	for _, page := range allPages {
@@ -14,7 +14,13 @@ func Sidebar(allPages []string, buf string) string {
 		} else {
 			sidebar.WriteString(`<a href="`)
 			sidebar.WriteString(linkify(page))
-			sidebar.WriteString(`" class="silent"><div><p>`)
+			sidebar.WriteString(`" class="silent`)
+
+			if page == active {
+				sidebar.WriteString(" active")
+			}
+
+			sidebar.WriteString(`"><div><p>`)
 			sidebar.WriteString(titleify(page))
 			sidebar.WriteString("</p></div></a>")
 		}
