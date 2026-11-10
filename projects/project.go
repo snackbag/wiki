@@ -9,6 +9,7 @@ import (
 )
 
 type Project struct {
+	Name        string   `json:"name"`
 	Description string   `json:"description"`
 	Pages       []string `json:"pages"`
 
