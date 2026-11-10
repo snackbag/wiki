@@ -13,7 +13,7 @@ func Sidebar(allPages []string, active string, buf string) string {
 			sidebar.WriteString("</p>")
 		} else {
 			sidebar.WriteString(`<a href="`)
-			sidebar.WriteString(linkify(page))
+			sidebar.WriteString(Linkify(page))
 			sidebar.WriteString(`" class="silent`)
 
 			if page == active {
@@ -21,7 +21,7 @@ func Sidebar(allPages []string, active string, buf string) string {
 			}
 
 			sidebar.WriteString(`"><div><p>`)
-			sidebar.WriteString(titleify(page))
+			sidebar.WriteString(Titleify(page))
 			sidebar.WriteString("</p></div></a>")
 		}
 
@@ -31,16 +31,16 @@ func Sidebar(allPages []string, active string, buf string) string {
 	return strings.ReplaceAll(buf, "<@Sidebar/>", sidebar.String())
 }
 
-// titleify removes the .md end of a filename and replaces all underscores with spaces.
-func titleify(filename string) string {
+// Titleify removes the .md end of a filename and replaces all underscores with spaces.
+func Titleify(filename string) string {
 	filename = strings.TrimSuffix(filename, ".md")
 	filename = strings.ReplaceAll(filename, "_", " ")
 	return filename
 }
 
-// linkify removes the .md end of a filename, makes all letters lowercase, and replaces
+// Linkify removes the .md end of a filename, makes all letters lowercase, and replaces
 // all underscores with dashes
-func linkify(filename string) string {
+func Linkify(filename string) string {
 	filename = strings.TrimSuffix(filename, ".md")
 	filename = strings.ToLower(filename)
 	filename = strings.ReplaceAll(filename, "_", "-")
