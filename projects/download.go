@@ -2,15 +2,15 @@ package projects
 
 import (
 	"os"
-	"path/filepath"
 
 	"github.com/go-git/go-git/v5"
 	cp "github.com/otiai10/copy"
+	"github.com/snackbag/wiki/util"
 )
 
 // Download clones a git repository at the given url into ./wikidl/<id>
 func Download(id string, url string) error {
-	path := filepath.Join("wikidl", id)
+	path := util.PathWikidl(id, "")
 	if _, err := os.Stat(path); err == nil {
 		os.RemoveAll(path)
 	}
@@ -31,7 +31,7 @@ func Download(id string, url string) error {
 }
 
 func CopyLocal(id string, localPath string) error {
-	path := filepath.Join("wikidl", id)
+	path := util.PathWikidl(id, "")
 	if err := cp.Copy(localPath, path); err != nil {
 		return err
 	}

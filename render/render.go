@@ -2,14 +2,14 @@ package render
 
 import (
 	"os"
-	"path/filepath"
 
 	"github.com/gomarkdown/markdown"
 	"github.com/gomarkdown/markdown/html"
+	"github.com/snackbag/wiki/util"
 )
 
 func Render(id string, page string, allPages []string) (string, error) {
-	path := filepath.Join("wikidl", id, ".docs", page)
+	path := util.PathWikidl(id, ".docs", page)
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return "", err

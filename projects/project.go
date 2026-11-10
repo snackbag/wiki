@@ -3,7 +3,6 @@ package projects
 import (
 	"encoding/json"
 	"os"
-	"path/filepath"
 
 	"github.com/snackbag/wiki/util"
 )
@@ -17,7 +16,7 @@ type Project struct {
 }
 
 func Read(id string) (Project, error) {
-	path := filepath.Join("wikidl", id, ".docs", "wiki.json")
+	path := util.PathWikidl(id, ".docs", "wiki.json")
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return Project{}, err

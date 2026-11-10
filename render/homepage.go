@@ -3,17 +3,17 @@ package render
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 	"strings"
 
 	"github.com/snackbag/wiki/projects"
+	"github.com/snackbag/wiki/util"
 )
 
 var cacheHomepage string
 
 func Homepage(projects map[string]projects.Project) string {
 	if cacheHomepage == "" {
-		path := filepath.Join("templates", "index.html")
+		path := util.PathTemplate("index.html")
 		data, err := os.ReadFile(path)
 		if err != nil {
 			return fmt.Sprintf("failed to get homepage: %s", err)

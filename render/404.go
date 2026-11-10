@@ -3,14 +3,15 @@ package render
 import (
 	"fmt"
 	"os"
-	"path/filepath"
+
+	"github.com/snackbag/wiki/util"
 )
 
 var cacheNotFound string
 
 func NotFound() string {
 	if cacheNotFound == "" {
-		path := filepath.Join("templates", "404.html")
+		path := util.PathTemplate("404.html")
 		data, err := os.ReadFile(path)
 		if err != nil {
 			return fmt.Sprintf("failed to get 404 page: %s", err)
