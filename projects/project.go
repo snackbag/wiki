@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/snackbag/wiki/render"
+	"github.com/snackbag/wiki/util"
 )
 
 type Project struct {
@@ -30,7 +30,7 @@ func Read(id string) (Project, error) {
 
 	project.Links = make(map[string]string)
 	for _, page := range project.Pages {
-		project.Links[render.Linkify(page)] = page
+		project.Links[util.Linkify(page)] = page
 	}
 
 	return project, nil

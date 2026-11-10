@@ -1,6 +1,10 @@
 package render
 
-import "strings"
+import (
+	"strings"
+
+	"github.com/snackbag/wiki/util"
+)
 
 // Sidebar updates <@Sidebar/> in the buffer HTML file, and returns an updated buffer
 func Sidebar(allPages []string, active string, buf string) string {
@@ -13,7 +17,7 @@ func Sidebar(allPages []string, active string, buf string) string {
 			sidebar.WriteString("</p>")
 		} else {
 			sidebar.WriteString(`<a href="`)
-			sidebar.WriteString(Linkify(page))
+			sidebar.WriteString(util.Linkify(page))
 			sidebar.WriteString(`" class="silent`)
 
 			if page == active {
@@ -21,7 +25,7 @@ func Sidebar(allPages []string, active string, buf string) string {
 			}
 
 			sidebar.WriteString(`"><div><p>`)
-			sidebar.WriteString(Titleify(page))
+			sidebar.WriteString(util.Titleify(page))
 			sidebar.WriteString("</p></div></a>")
 		}
 
@@ -29,20 +33,4 @@ func Sidebar(allPages []string, active string, buf string) string {
 	}
 
 	return strings.ReplaceAll(buf, "<@Sidebar/>", sidebar.String())
-}
-
-// Titleify removes the .md end of a filename and replaces all underscores with spaces.
-func Titleify(filename string) string {
-	filename = strings.TrimSuffix(filename, ".md")
-	filename = strings.ReplaceAll(filename, "_", " ")
-	return filename
-}
-
-// Linkify removes the .md end of a filename, makes all letters lowercase, and replaces
-// all underscores with dashes
-func Linkify(filename string) string {
-	filename = strings.TrimSuffix(filename, ".md")
-	filename = strings.ToLower(filename)
-	filename = strings.ReplaceAll(filename, "_", "-")
-	return filename
 }
