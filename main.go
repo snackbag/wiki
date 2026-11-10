@@ -8,6 +8,7 @@ import (
 
 	"github.com/snackbag/compass/v2"
 	"github.com/snackbag/wiki/projects"
+	"github.com/snackbag/wiki/render"
 )
 
 var server *compass.Server
@@ -35,7 +36,7 @@ func main() {
 		if err != nil {
 			server.Logger.Error(fmt.Sprintf("failed to set up project %s: %v", id, err))
 			server.AddRoute(fmt.Sprintf("/%s", id), func(request compass.Request) compass.Response {
-				return compass.Text("An error occurred while setting up this wiki page.")
+				return compass.TextWithCode("An error occurred while setting up this wiki page.", 500)
 			})
 		}
 	}
@@ -51,6 +52,11 @@ func main() {
 		page, _ := request.GetRouteParam("page")
 		return compass.PermaRedirect(fmt.Sprintf("/%s/%s", project, page))
 	})
+
+	// 404 page
+	server.NotFoundHandler = func(request compass.Request) compass.Response {
+		return compass.HTMLWithCode(render.NotFound(), 404)
+	}
 
 	server.MustRun()
 }
