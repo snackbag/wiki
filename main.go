@@ -30,6 +30,7 @@ func main() {
 	if err != nil {
 		log.Fatal(fmt.Errorf("parsing config.json: %w", err))
 	}
+	Config.LoadedProjects = make(map[string]projects.Project)
 
 	// register projects
 	for id, def := range Config.Projects {
@@ -56,6 +57,12 @@ func main() {
 		project, _ := request.GetRouteParam("project")
 		page, _ := request.GetRouteParam("page")
 		return compass.PermaRedirect(fmt.Sprintf("/%s/%s", project, page))
+	})
+
+	// homepage
+	server.AddRoute("/", func(request compass.Request) compass.Response {
+		rendered := render.Homepage(Config.LoadedProjects)
+		return compass.HTML(rendered)
 	})
 
 	// 404 page
