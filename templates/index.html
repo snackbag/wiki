@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <@head "title": "Welcome to the wiki!"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="index-content">
-    <h1>SnackBag <span class="snackbag-colors">Wiki</span></h1>
+    <h1>SnackBag Wiki</h1>
     <hr style="margin: 20px 0"/>
-    <p>The goal of this wiki is to help you configure everything correctly and make sure everything works as you think
-        it does. In addition to the wiki, we also have a <a href="https://discord.gg/7uYhxN7cFj" target="_blank">Discord server</a>. Under this text you may select the project you
-        are interested in, and you'll be automatically redirected to the according pages.</p>
+    <p>Wiki to answer your questions about our projects. Additionally, you can also come ask in your <a href="https://discord.gg/7uYhxN7cFj" target="_blank">Discord server</a>.</p>
     
     <div class="cards" style="margin-top: 20px">
-        <@card "title": "TT20 mod", "download": "https://modrinth.com/mod/tt20", "issues": "https://github.com/snackbag/", "description": "TT20 is a server-side Minecraft mod designed to optimize performance during low TPS (ticks per second) scenarios.", "href": "/w/tt20"/>
-        <@card "title": "Neilon Library", "sources": "https://github.com/snackbag/neilon", "issues": "https://github.com/snackbag/neilon/issues", "description": "FabricMC Quality of life text library to aid working with Minecraft's abstract and complex text system.", "href": "/w/neilon"/>
-        <@card "title": "Create Fabric Addon", "description": "Unofficial documentation to create your own Create Mod Addon in Fabric, to help new developers join the ecosystem.", "href": "/w/cfa", "read": true/>
+        %cards%
     </div>
 </div>
 </body>
