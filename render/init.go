@@ -15,7 +15,7 @@ func Init(server *compass.Server, id string, project projects.Project) {
 	server.AddRoute(fmt.Sprintf("/%s/<page>", id), func(request compass.Request) compass.Response {
 		page, _ := request.GetRouteParam("page")
 
-		rendered, err := Render(id, project.Links[page], project.Pages)
+		rendered, err := Page(id, project.Links[page], project.Pages)
 		if err != nil {
 			server.Logger.Error(fmt.Sprintf("failed to render %s/%s: %v", id, page, err))
 			return compass.TextWithCode("Failed to render page", 500)
