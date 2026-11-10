@@ -5,9 +5,11 @@ import (
 	"strings"
 
 	"github.com/snackbag/compass/v2"
+	"github.com/snackbag/wiki/render"
 )
 
 func Init(server *compass.Server, id string, def string) error {
+	server.Logger.Info(fmt.Sprintf("Setting up project %s", id))
 	if strings.HasPrefix(def, "git@") || strings.HasPrefix(def, "https://") {
 		err := Download(id, def)
 		if err != nil {
@@ -26,7 +28,14 @@ func Init(server *compass.Server, id string, def string) error {
 
 	server.AddRoute(fmt.Sprintf("/%s/<page>", id), func(request compass.Request) compass.Response {
 		page, _ := request.GetRouteParam("page")
-		return compass.Text(fmt.Sprintf("page %s of %s", page, id))
+
+		rendered, err := render.Render(id, page, []string{"hi.md", "*hiow", "woah_hI.md"})
+		if err != nil {
+			server.Logger.Error(fmt.Sprintf("failed to render %s/%s: %v", id, page, err))
+			return compass.TextWithCode("Failed to render page", 500)
+		}
+
+		return compass.HTML(rendered)
 	})
 
 	return nil
