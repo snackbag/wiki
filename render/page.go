@@ -30,7 +30,7 @@ func Page(id string, page string, allPages []string) (string, error) {
 		return "", fmt.Errorf("failed to convert md: %w", err)
 	}
 	content := strings.ReplaceAll(cachedPageBase, "<@Content/>", md)
-	content = strings.ReplaceAll(content, "<@Sidebar/>", Sidebar(allPages, page, content))
+	content = Sidebar(allPages, page, content)
 
 	return content, nil
 }
