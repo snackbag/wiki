@@ -1,6 +1,7 @@
 {
     "projects": {
         "tt20": "git@github.com:snackbag/TT20.git",
-        "neilon": "git@github.com:snackbag/Neilon.git"
+        "neilon": "git@github.com:snackbag/Neilon.git",
+        "flatmod": "/Volumes/Media/ExtGoProjects/jmod"
     }
 }
