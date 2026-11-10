@@ -11,12 +11,17 @@ import (
 // Download clones a git repository at the given url into ./wikidl/<id>
 func Download(id string, url string) error {
 	path := filepath.Join("wikidl", id)
+	if _, err := os.Stat(path); err == nil {
+		os.RemoveAll(path)
+	}
+
 	if err := os.MkdirAll(path, 0700); err != nil {
 		return err
 	}
 
 	_, err := git.PlainClone(path, false, &git.CloneOptions{
-		URL: url,
+		URL:      url,
+		Progress: os.Stdout,
 	})
 	if err != nil {
 		return err
