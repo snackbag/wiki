@@ -13,7 +13,7 @@ func Sidebar(allPages []string, active string, buf string) string {
 	for _, page := range allPages {
 		if strings.HasPrefix(page, "*") {
 			sidebar.WriteString("<p>")
-			sidebar.WriteString(page)
+			sidebar.WriteString(strings.TrimPrefix(page, "*"))
 			sidebar.WriteString("</p>")
 		} else {
 			sidebar.WriteString(`<a href="`)
