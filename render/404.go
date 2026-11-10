@@ -10,7 +10,6 @@ var cacheNotFound string
 
 func NotFound() string {
 	if cacheNotFound == "" {
-		fmt.Println("NOT cached")
 		path := filepath.Join("templates", "404.html")
 		data, err := os.ReadFile(path)
 		if err != nil {
