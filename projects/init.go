@@ -21,6 +21,13 @@ func Init(server *compass.Server, id string, def string) error {
 	}
 
 	server.AddRoute(fmt.Sprintf("/%s", id), func(request compass.Request) compass.Response {
-
+		return compass.PermaRedirect(fmt.Sprintf("/%s/home", id))
 	})
+
+	server.AddRoute(fmt.Sprintf("/%s/<page>", id), func(request compass.Request) compass.Response {
+		page, _ := request.GetRouteParam("page")
+		return compass.Text(fmt.Sprintf("page %s of %s", page, id))
+	})
+
+	return nil
 }
