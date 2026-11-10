@@ -12,7 +12,7 @@ type Project struct {
 	Description string   `json:"description"`
 	Pages       []string `json:"pages"`
 
-	links map[string]string
+	Links map[string]string
 }
 
 func Read(id string) (Project, error) {
@@ -28,9 +28,9 @@ func Read(id string) (Project, error) {
 		return Project{}, err
 	}
 
-	project.links = make(map[string]string)
+	project.Links = make(map[string]string)
 	for _, page := range project.Pages {
-		project.links[render.Linkify(page)] = page
+		project.Links[render.Linkify(page)] = page
 	}
 
 	return project, nil
