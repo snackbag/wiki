@@ -6,7 +6,10 @@ require github.com/snackbag/compass/v2 v2.1.0
 
 require github.com/go-git/go-git/v5 v5.19.3
 
-require github.com/otiai10/copy v1.14.1
+require (
+	github.com/gomarkdown/markdown v0.0.0-20261109103609-13f93121d67a
+	github.com/otiai10/copy v1.14.1
+)
 
 require (
 	dario.cat/mergo v1.0.0 // indirect
