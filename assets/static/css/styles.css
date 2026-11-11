@@ -123,6 +123,10 @@ summary {
     width: max-content;
 }
 
+#message {
+    font-size: 12px;
+}
+
 @media screen and (max-width: 820px) {
     .card {
         width: 100%;

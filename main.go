@@ -1,41 +1,87 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"github.com/snackbag/compass/compass"
-	"github.com/snackbag/wiki/global"
+	"log"
+	"os"
+
+	"github.com/snackbag/compass/v2"
+	"github.com/snackbag/wiki/projects"
+	"github.com/snackbag/wiki/render"
 )
 
-var Server *compass.Server
-var Projects map[string]*ProjectData
-var PagesDir string
-var Handler *global.Handler
-var IsDevMode bool
+var server *compass.Server
+var Config struct {
+	Projects map[string]string           `json:"projects"`
+	Compass  compass.ServerConfiguration `json:"compass"`
+
+	LoadedProjects map[string]projects.Project
+}
 
 func main() {
-	server := compass.NewServer()
-	handler := global.NewHandler()
-	Server = &server
-	Handler = handler
+	if c, err := os.ReadFile("config.json"); err == nil {
+		err = json.Unmarshal(c, &Config)
+		if err != nil {
+			panic(err)
+		}
 
-	config := AssembleConfiguration(handler)
-	if config == nil {
-		fmt.Println("Config is nil, aborting startup.")
-		return
+		Config.Compass = compass.FillUnsets(Config.Compass)
+	} else {
+		panic(err)
 	}
 
-	server.Port = config.Port
-	server.StaticDirectory = config.StaticDir
-	server.TemplatesDirectory = config.TemplatesDir
-	server.ComponentsDirectory = config.ComponentsDir
-	PagesDir = config.PagesDir
-	IsDevMode = config.DeveloperMode
+	server = compass.NewServer(Config.Compass)
 
-	global.SetHandlerServerResponse(handler, &server)
-	LoadProjects(config.PagesDir, handler)
+	// load config
+	data, err := os.ReadFile("config.json")
+	if err != nil {
+		log.Fatal(fmt.Errorf("reading config.json: %w", err))
+	}
 
-	AddHomePages()
-	AddWikiPages()
+	err = json.Unmarshal(data, &Config)
+	if err != nil {
+		log.Fatal(fmt.Errorf("parsing config.json: %w", err))
+	}
+	Config.LoadedProjects = make(map[string]projects.Project)
 
-	server.Start()
+	// register projects
+	for id, def := range Config.Projects {
+		loadedProject, err := projects.Init(server, id, def)
+		if err != nil {
+			server.Logger.Errorf("failed to set up project %s: %v", id, err)
+			server.AddRoute(fmt.Sprintf("/%s", id), func(request compass.Request) compass.Response {
+				return compass.TextWithCode("An error occurred while setting up this wiki page.", 500)
+			})
+		} else {
+			Config.LoadedProjects[id] = loadedProject
+		}
+
+		render.Init(server, id, loadedProject)
+	}
+
+	// legacy url fallback
+	server.AddRoute("/w/<project>", func(request compass.Request) compass.Response {
+		project, _ := request.GetRouteParam("project")
+		return compass.PermaRedirect(fmt.Sprintf("/%s", project))
+	})
+
+	server.AddRoute("/w/<project>/<page>", func(request compass.Request) compass.Response {
+		project, _ := request.GetRouteParam("project")
+		page, _ := request.GetRouteParam("page")
+		return compass.PermaRedirect(fmt.Sprintf("/%s/%s", project, page))
+	})
+
+	// homepage
+	server.AddRoute("/", func(request compass.Request) compass.Response {
+		rendered := render.Homepage(Config.LoadedProjects)
+		return compass.HTML(rendered)
+	})
+
+	// 404 page
+	server.NotFoundHandler = func(request compass.Request) compass.Response {
+		return compass.HTMLWithCode(render.NotFound(), 404)
+	}
+
+	server.MustRun()
 }

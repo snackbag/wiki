@@ -41,7 +41,7 @@ own wiki here yet, open a ticket.
 Otherwise, you can go to each project and create new markdown files. The file should only contain alphabetical
 characters, numbers and dashes. The page name will be displayed as each word being capitalized and all dashes being
 replaced as spaces. You cannot create nested folders (e.g. `/tt20/extra/hello-world.md`). After your page is finished,
-open the `pages/struct.json` file and add your newly created file to the `page_structure` value. Test your changes by
+open the `config.json` file and add your newly created file to the `page_structure` value. Test your changes by
 running `go run .` (after you've done `go mod tidy` at least once)
 
 ### Code

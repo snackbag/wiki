@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SnackBag Wiki</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="index-content">
+    <h1>Whoops :/</h1>
+    <hr/>
+    <p>The page you were trying to access does not exist.</p>
+    <p style="margin-top: 15px; font-size: 12px" id="message"></p>
+</div>
+<script type="text/javascript">
+    const items = [
+        "pretty please be fixed",
+        "this wouldn't have happened if you were a beaver",
+        "big anon is watching",
+        "stay hydrated",
+        "when she mark my motor and i creative all over the place",
+        "fourty four - Lemon",
+        "LOCAL AREA NETWORK!!!",
+        "the people are hallucinations",
+        "you have been promoted to one of my Elite Employees",
+        "my cup is my cup",
+        "the hamster is listening",
+        "MAKE THE WIKI GREAT AGAIN",
+        "hard at work or hardly working",
+        "who the hell is thomas?!",
+        "Jarvis, fill my helmet with galaxy gas",
+        "Jarvis, fix this page",
+        "what the devils ?!?!?!",
+        "It’s looooog it’s loooog it’s big it’s heavy it’s wood. It’s loooog it’s loooog it’s better than bad it’s good",
+        "Discussion about a hallucination and its impact on the conversation",
+        "do you like to come to my house ?",
+        "shhhh",
+        "I'm going to saw through your bones!",
+        "goober supremacy",
+        "idk man -- i just dipped my fries into water -- and boom",
+        "you'll be whitelisted in 1.5 hours",
+        "There's chocolate in my pants. It's been 3 days."
+    ]
+    const item = items[Math.floor(Math.random() * items.length)];
+
+    document.querySelector("#message").innerText = `${item}`;
+</script>
+</body>
+</html>

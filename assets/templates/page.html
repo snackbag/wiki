@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <@head "easy_title": false/>
-    <title><$name/> | SnackBag</title>
+    <title>SnackBag Wiki</title>
 
-    <!--- Page only styles --->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="/static/css/page.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    
     <link href="/static/js/highlight.min.css" rel="stylesheet">
     <script src="/static/js/highlight.min.js"></script>
 </head>
 <div style="display: flex">
     <div class="sidebar">
         <div class="sidebar-content">
-            <$pages/>
+            <@Sidebar/>
             <div style="margin-top: auto">
                 <a href="/"><p>Back</p></a>
             </div>
         </div>
     </div>
     <div style="width: 100%">
-        <div class="topbar">
-            <%if link_sources/>
-            <a href="<$link_sources/>" target="_blank">View Source Code</a>
-            <%end/>
-            <%if link_download_precompiled/>
-            <a href="<$link_download_precompiled/>" target="_blank">Download <$download_info/></a>
-            <%end/>
-        </div>
         <div class="page-content">
-            <$content/>
+            <@Content/>
         </div>
     </div>
 </div>
