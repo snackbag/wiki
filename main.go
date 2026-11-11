@@ -13,12 +13,25 @@ import (
 
 var server *compass.Server
 var Config struct {
-	Projects       map[string]string `json:"projects"`
+	Projects map[string]string           `json:"projects"`
+	Compass  compass.ServerConfiguration `json:"compass"`
+
 	LoadedProjects map[string]projects.Project
 }
 
 func main() {
-	server = compass.NewServer(compass.NewStandardConfiguration())
+	if c, err := os.ReadFile("config.json"); err == nil {
+		err = json.Unmarshal(c, &Config)
+		if err != nil {
+			panic(err)
+		}
+
+		Config.Compass = compass.FillUnsets(Config.Compass)
+	} else {
+		panic(err)
+	}
+
+	server = compass.NewServer(Config.Compass)
 
 	// load config
 	data, err := os.ReadFile("config.json")
@@ -36,7 +49,7 @@ func main() {
 	for id, def := range Config.Projects {
 		loadedProject, err := projects.Init(server, id, def)
 		if err != nil {
-			server.Logger.Error(fmt.Sprintf("failed to set up project %s: %v", id, err))
+			server.Logger.Errorf("failed to set up project %s: %v", id, err)
 			server.AddRoute(fmt.Sprintf("/%s", id), func(request compass.Request) compass.Response {
 				return compass.TextWithCode("An error occurred while setting up this wiki page.", 500)
 			})

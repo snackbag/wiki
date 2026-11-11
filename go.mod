@@ -2,7 +2,7 @@ module github.com/snackbag/wiki
 
 go 1.26.0
 
-require github.com/snackbag/compass/v2 v2.1.0
+require github.com/snackbag/compass/v2 v2.2.0
 
 require github.com/go-git/go-git/v5 v5.19.3
 

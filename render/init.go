@@ -17,7 +17,7 @@ func Init(server *compass.Server, id string, project projects.Project) {
 
 		rendered, err := Page(id, project.Links[page], project.Pages)
 		if err != nil {
-			server.Logger.Error(fmt.Sprintf("failed to render %s/%s: %v", id, page, err))
+			server.Logger.Errorf("failed to render %s/%s: %v", id, page, err)
 			return compass.TextWithCode("Failed to render page", 500)
 		}
 

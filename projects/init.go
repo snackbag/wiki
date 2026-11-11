@@ -8,7 +8,7 @@ import (
 )
 
 func Init(server *compass.Server, id string, def string) (Project, error) {
-	server.Logger.Info(fmt.Sprintf("Setting up project %s", id))
+	server.Logger.Infof("Setting up project %s", id)
 	if strings.HasPrefix(def, "git@") || strings.HasPrefix(def, "https://") {
 		err := Download(id, def)
 		if err != nil {
@@ -16,7 +16,7 @@ func Init(server *compass.Server, id string, def string) (Project, error) {
 		}
 	} else {
 		err := CopyLocal(id, def)
-		server.Logger.Warn(fmt.Sprintf("%s may be incomplete. copying %s: %v", id, id, err))
+		server.Logger.Warnf("%s may be incomplete. copying %s: %v", id, id, err)
 	}
 
 	project, err := Read(id)
